@@ -5,31 +5,37 @@ class CustomElevatedButton extends StatelessWidget {
     Key key,
     this.child,
     this.primaryColor,
-    this.onPressed,
+    @required this.onPressed,
     this.backgroundColor,
     this.shape,
-  }) : super(key: key);
+    this.minWidth: 450,
+    this.minHeight: 50,
+  })  : assert(minWidth != null),
+        assert(minHeight != null),
+        super(key: key);
 
   final Widget child;
   final Color primaryColor;
   final Color backgroundColor;
   final VoidCallback onPressed;
   final OutlinedBorder shape;
+  final double minWidth;
+  final double minHeight;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      child: child,
-      style: TextButton.styleFrom(
-        shape: shape,
-        textStyle: TextStyle(
-          fontSize: 15.0,
-          fontWeight: FontWeight.w600,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ElevatedButton(
+        child: child,
+        style: TextButton.styleFrom(
+          fixedSize: Size(minWidth, minHeight),
+          shape: shape,
+          primary: primaryColor,
+          backgroundColor: backgroundColor,
         ),
-        primary: primaryColor,
-        backgroundColor: backgroundColor,
+        onPressed: onPressed,
       ),
-      onPressed: onPressed,
     );
   }
 }

@@ -8,13 +8,21 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Time Tracker',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
+    return Center(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minWidth: 200,
+          maxWidth: 800,
+        ),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Time Tracker',
+          theme: ThemeData(
+            primarySwatch: Colors.indigo,
+          ),
+          home: SignInScreen(),
+        ),
       ),
-      home: SignInScreen(),
     );
   }
 }
