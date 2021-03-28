@@ -22,7 +22,13 @@ class SignInButtonWithLogo extends CustomElevatedButton {
                 child: Image.asset(assetName),
               ),
               Center(
-                child: Text(text),
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    fontSize: fontSize,
+                    fontWeight: fontWeight,
+                  ),
+                ),
               ),
             ],
           ),
