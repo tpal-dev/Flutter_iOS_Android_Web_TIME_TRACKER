@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1000562805044",
+    "project_id": "time-tracker-tpal",
+    "storage_bucket": "time-tracker-tpal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000562805044:android:1e450f7b693a8c51b97d61",
+        "android_client_info": {
+          "package_name": "pl.com.tpal.time_tracker_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1000562805044-ret2bbjkld08sbhcb9v2ee7t31ph6q50.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBS6SKJp34-nPb5vYUNfj5zgmVGmG6L0qs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1000562805044-ret2bbjkld08sbhcb9v2ee7t31ph6q50.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
