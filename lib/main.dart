@@ -2,7 +2,7 @@ import 'dart:io' show Platform;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:time_tracker_app/app/sign_in/sign_in_screen.dart';
+import 'package:time_tracker_app/app/landing_screen.dart';
 import 'package:window_size/window_size.dart';
 
 Future<void> main() async {
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.indigo,
           ),
-          home: SignInScreen(),
+          home: LandingScreen(),
         ),
       ),
     );
