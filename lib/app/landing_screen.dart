@@ -4,40 +4,32 @@ import 'package:time_tracker_app/app/home_screen.dart';
 import 'package:time_tracker_app/app/sign_in/sign_in_screen.dart';
 import 'package:time_tracker_app/services/auth.dart';
 
-class LandingScreen extends StatefulWidget {
+class LandingScreen extends StatelessWidget {
   const LandingScreen({Key key, @required this.auth}) : super(key: key);
   final AuthBase auth;
 
   @override
-  _LandingScreenState createState() => _LandingScreenState();
-}
-
-class _LandingScreenState extends State<LandingScreen> {
-  User _user;
-
-  @override
-  void initState() {
-    super.initState();
-    _updateUser(widget.auth.currentUser);
-  }
-
-  void _updateUser(User user) {
-    setState(() {
-      _user = user;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (_user == null) {
-      return SignInScreen(
-        auth: widget.auth,
-        onSignIn: _updateUser,
-      );
-    }
-    return HomeScreen(
-      auth: widget.auth,
-      onSignOut: () => _updateUser(null),
+    return StreamBuilder<User>(
+      stream: auth.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          final User user = snapshot.data;
+          if (user == null) {
+            return SignInScreen(
+              auth: auth,
+            );
+          }
+          return HomeScreen(
+            auth: auth,
+          );
+        }
+        return Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      },
     );
   }
 }
