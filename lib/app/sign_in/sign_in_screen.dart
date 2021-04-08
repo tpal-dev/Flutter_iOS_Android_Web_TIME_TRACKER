@@ -9,7 +9,12 @@ class SignInScreen extends StatelessWidget {
 
   Future<void> _signInAnonymously() async {
     final user = await auth.signInAnonymously();
-    print('Anonymous sign in success! uid: ${user.uid}');
+    print('Anonymous sign in success! uid: ${user?.uid}');
+  }
+
+  Future<void> _signInWithGoogle() async {
+    final user = await auth.signInWithGoogle();
+    print('Google sign in success! uid: ${user?.uid}');
   }
 
   @override
@@ -50,7 +55,7 @@ class SignInScreen extends StatelessWidget {
                 assetName: 'images/google-logo.png',
                 text: 'Sign in with Google',
                 color: Colors.white,
-                onPressed: () {},
+                onPressed: _signInWithGoogle,
               ),
               SignInButtonWithLogo(
                 assetName: 'images/facebook-logo.png',

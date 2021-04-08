@@ -114,6 +114,27 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  google_sign_in:
+    dependency: "direct main"
+    description:
+      name: google_sign_in
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.1"
+  google_sign_in_platform_interface:
+    dependency: transitive
+    description:
+      name: google_sign_in_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
+  google_sign_in_web:
+    dependency: transitive
+    description:
+      name: google_sign_in_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.0"
   http_parser:
     dependency: transitive
     description:
@@ -163,6 +184,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -229,10 +257,10 @@ packages:
     description:
       path: "plugins/window_size"
       ref: HEAD
-      resolved-ref: "7812516a5c1fc8ef379e244106953a2b534432b9"
+      resolved-ref: "57a2cd88486105d3d813583339eb0e23c9bfd6d2"
       url: "git://github.com/google/flutter-desktop-embedding.git"
     source: git
     version: "0.1.0"
 sdks:
-  dart: ">=2.12.0-0.0 <3.0.0"
-  flutter: ">=1.12.13+hotfix.5"
+  dart: ">=2.12.0-259.9.beta <3.0.0"
+  flutter: ">=1.20.0"
