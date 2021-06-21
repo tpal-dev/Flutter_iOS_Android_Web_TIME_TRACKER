@@ -6,12 +6,7 @@ class HomeScreen extends StatelessWidget {
   final AuthBase auth;
 
   Future<void> _signOut() async {
-    try {
-      await auth.signOut();
-    } catch (e) {
-      print('Error -> Exception details:\n $e');
-      rethrow;
-    }
+    await auth.signOut();
   }
 
   @override

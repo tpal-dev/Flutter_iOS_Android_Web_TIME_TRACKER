@@ -17,6 +17,11 @@ class SignInScreen extends StatelessWidget {
     print('Google sign in success! uid: ${user?.uid}');
   }
 
+  Future<void> _signInWithFacebook() async {
+    final user = await auth.signInWithFacebook();
+    print('Facebook sign in success! uid: ${user?.uid}');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +68,7 @@ class SignInScreen extends StatelessWidget {
                 textColor: Colors.white,
                 fontWeight: FontWeight.normal,
                 color: Color(0xFF334d92),
-                onPressed: () {},
+                onPressed: _signInWithFacebook,
               ),
               SignInButton(
                 text: 'Sign in with email',
