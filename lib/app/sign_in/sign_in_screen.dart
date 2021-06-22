@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:time_tracker_app/app/sign_in/email_auth_screen.dart';
 import 'package:time_tracker_app/app/sign_in/sign_in_button.dart';
-import 'package:time_tracker_app/app/sign_in/sign_in_with_logo_button.dart';
+import 'package:time_tracker_app/app/sign_in/sign_in_button_with_icon.dart';
 import 'package:time_tracker_app/services/auth.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -22,6 +23,15 @@ class SignInScreen extends StatelessWidget {
     print('Facebook sign in success! uid: ${user?.uid}');
   }
 
+  void _signInWithEmail(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (context) => EmailAuthScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,13 +40,13 @@ class SignInScreen extends StatelessWidget {
         elevation: 3.0,
       ),
       body: SafeArea(
-        child: _buildContent(),
+        child: _buildContent(context),
       ),
       backgroundColor: Colors.grey.shade200,
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(15.0),
       child: Center(
@@ -56,14 +66,14 @@ class SignInScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 70),
-              SignInButtonWithLogo(
-                assetName: 'images/google-logo.png',
+              SignInButtonWithIcon(
+                icon: Image.asset('images/google-logo.png'),
                 text: 'Sign in with Google',
                 color: Colors.white,
                 onPressed: _signInWithGoogle,
               ),
-              SignInButtonWithLogo(
-                assetName: 'images/facebook-logo.png',
+              SignInButtonWithIcon(
+                icon: Image.asset('images/facebook-logo.png'),
                 text: 'Sign in with Facebook',
                 textColor: Colors.white,
                 fontWeight: FontWeight.normal,
@@ -75,7 +85,7 @@ class SignInScreen extends StatelessWidget {
                 textColor: Colors.white,
                 fontWeight: FontWeight.normal,
                 color: Colors.teal,
-                onPressed: () {},
+                onPressed: () => _signInWithEmail(context),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),

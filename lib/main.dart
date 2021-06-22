@@ -12,7 +12,7 @@ Future<void> main() async {
   if (!kIsWeb) {
     if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
       setWindowTitle('Time Tracker');
-      setWindowMinSize(const Size(400, 600));
+      setWindowMinSize(const Size(400, 500));
       setWindowMaxSize(const Size(800, double.infinity));
       setWindowFrame(Rect.fromLTRB(0, 0, 600.0, 1000.0));
       // setWindowMaxSize(Size.infinite);
@@ -39,13 +39,14 @@ class MyApp extends StatelessWidget {
       child: ConstrainedBox(
         constraints: BoxConstraints(
           minWidth: 400,
-          maxWidth: 800,
+          maxWidth: 500,
         ),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Time Tracker',
           theme: ThemeData(
             primarySwatch: Colors.indigo,
+            canvasColor: Colors.green,
           ),
           home: LandingScreen(
             auth: Auth(),

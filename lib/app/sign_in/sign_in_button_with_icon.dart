@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracker_app/custom_widgets/custom_elevated_button.dart';
 
-class SignInButtonWithLogo extends CustomElevatedButton {
-  SignInButtonWithLogo({
-    @required String assetName,
+class SignInButtonWithIcon extends CustomElevatedButton {
+  SignInButtonWithIcon({
+    @required Widget icon,
     @required String text,
-    @required VoidCallback onPressed,
+    VoidCallback onPressed,
     Color color,
     Color textColor: Colors.black87,
     double fontSize: 15.0,
     FontWeight fontWeight: FontWeight.w600,
-  })  : assert(assetName != null),
+  })  : assert(icon != null),
         assert(text != null),
         super(
           child: Stack(
@@ -19,7 +19,7 @@ class SignInButtonWithLogo extends CustomElevatedButton {
             children: [
               Positioned(
                 left: 5,
-                child: Image.asset(assetName),
+                child: icon,
               ),
               Center(
                 child: Text(

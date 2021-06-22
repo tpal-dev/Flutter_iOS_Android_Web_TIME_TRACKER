@@ -4,7 +4,7 @@ import 'package:time_tracker_app/custom_widgets/custom_elevated_button.dart';
 class SignInButton extends CustomElevatedButton {
   SignInButton({
     @required String text,
-    @required VoidCallback onPressed,
+    VoidCallback onPressed,
     Color color,
     Color textColor: Colors.black87,
     double fontSize: 15.0,
