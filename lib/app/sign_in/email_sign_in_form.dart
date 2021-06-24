@@ -1,33 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:time_tracker_app/app/sign_in/sign_in_button.dart';
 
-class EmailSignInForm extends StatelessWidget {
+enum EmailSignInFormType { signIn, register }
+
+class EmailSignInForm extends StatefulWidget {
   const EmailSignInForm({Key key}) : super(key: key);
 
-  List<Widget> _buildChildren() {
+  @override
+  _EmailSignInFormState createState() => _EmailSignInFormState();
+}
+
+class _EmailSignInFormState extends State<EmailSignInForm> {
+  final TextEditingController _emailTextFieldController = TextEditingController();
+  final TextEditingController _passwordTextFieldController = TextEditingController();
+  EmailSignInFormType _formType = EmailSignInFormType.signIn;
+
+  void _toggleFormType() {
+    setState(() {
+      _formType = _formType == EmailSignInFormType.signIn
+          ? EmailSignInFormType.register
+          : EmailSignInFormType.signIn;
+    });
+    _emailTextFieldController.clear();
+    _passwordTextFieldController.clear();
+  }
+
+  void _submit() {}
+
+  List<Widget> _buildColumnChildren() {
+    final primaryText = _formType == EmailSignInFormType.signIn ? 'Sign in' : 'Create an account';
+    final secondaryText = _formType == EmailSignInFormType.signIn
+        ? 'Need an account? Register'
+        : 'Have an account? Sign in';
+
     return [
       TextFormField(
+        controller: _emailTextFieldController,
         decoration: InputDecoration(
           labelText: 'Email',
           hintText: "test@gmail.com",
         ),
       ),
       TextFormField(
+        controller: _passwordTextFieldController,
         obscureText: true,
         decoration: InputDecoration(
           labelText: 'Password',
         ),
       ),
       SizedBox(height: 16.0),
-      ElevatedButton(
-        child: Text('Sign in'),
+      SignInButton(
+        text: primaryText,
+        textColor: Colors.white,
+        fontWeight: FontWeight.normal,
         onPressed: () {},
       ),
       SizedBox(height: 10.0),
       Align(
         alignment: Alignment.center,
         child: TextButton(
-          child: Text(' Need an account? Register '),
-          onPressed: () {},
+          child: Text(secondaryText),
+          onPressed: _toggleFormType,
         ),
       )
     ];
@@ -40,7 +73,7 @@ class EmailSignInForm extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: _buildChildren(),
+        children: _buildColumnChildren(),
       ),
     );
   }
