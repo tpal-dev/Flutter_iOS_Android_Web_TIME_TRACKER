@@ -46,7 +46,6 @@ class MyApp extends StatelessWidget {
           title: 'Time Tracker',
           theme: ThemeData(
             primarySwatch: Colors.indigo,
-            canvasColor: Colors.green,
           ),
           home: LandingScreen(
             auth: Auth(),

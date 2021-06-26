@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracker_app/custom_widgets/custom_elevated_button.dart';
 
-class SignInButton extends CustomElevatedButton {
-  SignInButton({
+class SubmitButton extends CustomElevatedButton {
+  SubmitButton({
     @required String text,
     VoidCallback onPressed,
     Color color,

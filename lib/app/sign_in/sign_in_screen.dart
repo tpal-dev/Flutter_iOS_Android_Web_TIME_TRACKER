@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracker_app/app/sign_in/email_auth_screen.dart';
-import 'package:time_tracker_app/app/sign_in/sign_in_button.dart';
+import 'package:time_tracker_app/app/sign_in/submit_button.dart';
 import 'package:time_tracker_app/app/sign_in/sign_in_button_with_icon.dart';
 import 'package:time_tracker_app/services/auth.dart';
 
@@ -27,7 +27,9 @@ class SignInScreen extends StatelessWidget {
     Navigator.of(context).push(
       MaterialPageRoute(
         fullscreenDialog: true,
-        builder: (context) => EmailAuthScreen(),
+        builder: (context) => EmailAuthScreen(
+          auth: auth,
+        ),
       ),
     );
   }
@@ -80,7 +82,7 @@ class SignInScreen extends StatelessWidget {
                 color: Color(0xFF334d92),
                 onPressed: _signInWithFacebook,
               ),
-              SignInButton(
+              SubmitButton(
                 text: 'Sign in with email',
                 textColor: Colors.white,
                 fontWeight: FontWeight.normal,
@@ -91,7 +93,7 @@ class SignInScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text('or'),
               ),
-              SignInButton(
+              SubmitButton(
                 text: 'Go anonymous',
                 color: Colors.lime.shade300,
                 onPressed: _signInAnonymously,
