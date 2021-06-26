@@ -42,7 +42,7 @@ class SignInScreen extends StatelessWidget {
         elevation: 3.0,
       ),
       body: SafeArea(
-        child: _buildContent(context),
+        child: SingleChildScrollView(child: _buildContent(context)),
       ),
       backgroundColor: Colors.grey.shade200,
     );

@@ -14,10 +14,12 @@ class EmailAuthScreen extends StatelessWidget {
         elevation: 3.0,
       ),
       body: SafeArea(
-        child: Card(
-          margin: EdgeInsets.all(16.0),
-          child: EmailSignInForm(
-            auth: auth,
+        child: SingleChildScrollView(
+          child: Card(
+            margin: EdgeInsets.all(16.0),
+            child: EmailSignInForm(
+              auth: auth,
+            ),
           ),
         ),
       ),
