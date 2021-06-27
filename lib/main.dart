@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:time_tracker_app/app/landing_screen.dart';
 import 'package:time_tracker_app/services/auth.dart';
 import 'package:window_size/window_size.dart';
@@ -20,7 +21,7 @@ Future<void> main() async {
   }
   await Firebase.initializeApp();
   if (kIsWeb) {
-    // initialiaze the facebook javascript SDK
+    // initialize the facebook javascript SDK
     FacebookAuth.i.webInitialize(
       appId: "315154693676920", //<-- YOUR APP_ID
       cookie: true,
@@ -41,14 +42,15 @@ class MyApp extends StatelessWidget {
           minWidth: 400,
           maxWidth: 500,
         ),
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Time Tracker',
-          theme: ThemeData(
-            primarySwatch: Colors.indigo,
-          ),
-          home: LandingScreen(
-            auth: Auth(),
+        child: Provider<AuthBase>(
+          create: (context) => Auth(),
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Time Tracker',
+            theme: ThemeData(
+              primarySwatch: Colors.indigo,
+            ),
+            home: LandingScreen(),
           ),
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:time_tracker_app/app/sign_in/submit_button.dart';
 import 'package:time_tracker_app/app/sign_in/validators.dart';
 import 'package:time_tracker_app/custom_widgets/show_alert_dialog.dart';
@@ -9,8 +10,7 @@ import 'package:time_tracker_app/services/auth.dart';
 enum EmailSignInFormType { signIn, register }
 
 class EmailSignInForm extends StatefulWidget with EmailAndPasswordValidators {
-  EmailSignInForm({Key key, @required this.auth}) : super(key: key);
-  final AuthBase auth;
+  EmailSignInForm({Key key}) : super(key: key);
 
   @override
   _EmailSignInFormState createState() => _EmailSignInFormState();
@@ -46,11 +46,12 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       _isLoading = true;
     });
     try {
+      final auth = Provider.of<AuthBase>(context, listen: false);
       // await Future.delayed(Duration(seconds: 3));
       if (_formType == EmailSignInFormType.signIn) {
-        await widget.auth.signInWithEmailAndPassword(email: _email, password: _password);
+        await auth.signInWithEmailAndPassword(email: _email, password: _password);
       } else {
-        await widget.auth.createUserWithEmailAndPassword(email: _email, password: _password);
+        await auth.createUserWithEmailAndPassword(email: _email, password: _password);
       }
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
