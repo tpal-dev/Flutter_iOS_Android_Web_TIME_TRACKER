@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:time_tracker_app/app/sign_in/submit_button.dart';
 import 'package:time_tracker_app/app/sign_in/validators.dart';
+import 'package:time_tracker_app/custom_widgets/show_alert_dialog.dart';
 import 'package:time_tracker_app/services/auth.dart';
 
 enum EmailSignInFormType { signIn, register }
@@ -50,8 +53,8 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
         await widget.auth.createUserWithEmailAndPassword(email: _email, password: _password);
       }
       Navigator.pop(context);
-    } catch (e) {
-      print(e.toString());
+    } on FirebaseAuthException catch (e) {
+      showAlertDialog(context, title: e.code, content: e.message, defaultActionText: 'OK');
     } finally {
       setState(() {
         _isLoading = false;
