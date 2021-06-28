@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:time_tracker_app/app/sign_in/submit_button.dart';
+import 'package:time_tracker_app/app/sign_in/sign_in_button.dart';
 import 'package:time_tracker_app/app/sign_in/validators.dart';
 import 'package:time_tracker_app/custom_widgets/show_exception_alert_dialog.dart';
 import 'package:time_tracker_app/services/auth.dart';
@@ -28,6 +28,15 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
 
   String get _email => _emailTextFieldController.text.trim();
   String get _password => _passwordTextFieldController.text.trim();
+
+  @override
+  void dispose() {
+    _emailTextFieldController.dispose();
+    _passwordTextFieldController.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    super.dispose();
+  }
 
   void _toggleFormType() {
     setState(() {
@@ -98,7 +107,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       _buildEmailTextField(),
       _buildPasswordTextField(),
       SizedBox(height: 16.0),
-      SubmitButton(
+      SignInButton(
         text: primaryText,
         textColor: Colors.white,
         fontWeight: FontWeight.normal,
