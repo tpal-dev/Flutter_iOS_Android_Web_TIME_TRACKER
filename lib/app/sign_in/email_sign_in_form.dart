@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time_tracker_app/app/sign_in/submit_button.dart';
 import 'package:time_tracker_app/app/sign_in/validators.dart';
-import 'package:time_tracker_app/custom_widgets/show_alert_dialog.dart';
+import 'package:time_tracker_app/custom_widgets/show_exception_alert_dialog.dart';
 import 'package:time_tracker_app/services/auth.dart';
 
 enum EmailSignInFormType { signIn, register }
@@ -55,7 +55,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       }
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
-      showAlertDialog(context, title: e.code, content: e.message, defaultActionText: 'OK');
+      showExceptionAlertDialog(context, exception: e);
     } finally {
       setState(() {
         _isLoading = false;

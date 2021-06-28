@@ -6,8 +6,8 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 Future<bool> showAlertDialog(
   BuildContext context, {
   @required String title,
-  @required content,
-  @required defaultActionText,
+  @required String content,
+  @required String defaultActionText,
   String cancelActionText,
 }) {
   if (kIsWeb) {
@@ -15,7 +15,7 @@ Future<bool> showAlertDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext dialogContext) => AlertDialog(
-        title: Text(title.toUpperCase().replaceAll('-', ' ')),
+        title: Text(title),
         content: Text(content),
         actions: <Widget>[
           TextButton(
@@ -34,7 +34,7 @@ Future<bool> showAlertDialog(
     return showCupertinoDialog(
       context: context,
       builder: (BuildContext dialogContext) => CupertinoAlertDialog(
-        title: Text(title.toUpperCase().replaceAll('-', ' ')),
+        title: Text(title),
         content: Text(content),
         actions: <Widget>[
           CupertinoDialogAction(
@@ -54,7 +54,7 @@ Future<bool> showAlertDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext dialogContext) => AlertDialog(
-        title: Text(title.toUpperCase().replaceAll('-', ' ')),
+        title: Text(title),
         content: Text(content),
         actions: <Widget>[
           TextButton(
