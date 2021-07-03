@@ -17,7 +17,7 @@ class LandingScreen extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.active) {
           final User user = snapshot.data;
           if (user == null) {
-            return SignInScreen();
+            return SignInScreen.create(context);
           }
           return HomeScreen();
         }
