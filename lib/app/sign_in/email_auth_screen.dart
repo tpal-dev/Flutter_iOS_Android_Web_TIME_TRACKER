@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracker_app/app/sign_in/email_sign_in_form_bloc_based.dart';
+import 'package:time_tracker_app/app/sign_in/email_sign_in_form_change_notifier.dart';
 
 class EmailAuthScreen extends StatelessWidget {
   const EmailAuthScreen({Key key}) : super(key: key);
@@ -14,7 +15,7 @@ class EmailAuthScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Card(
             margin: EdgeInsets.all(16.0),
-            child: EmailSignInFormBlocBased.create(context),
+            child: EmailSignInFormChangeNotifier.create(context),
           ),
         ),
       ),
