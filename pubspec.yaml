@@ -21,6 +21,7 @@ dependencies:
   google_sign_in: ^5.0.1
   flutter_facebook_auth: ^3.3.3-no-nullsafety
   provider: ^4.3.2
+  cloud_firestore: ^1.0.0
 
 
 dev_dependencies:

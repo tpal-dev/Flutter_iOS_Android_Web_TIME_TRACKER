@@ -26,6 +26,8 @@ class HomeScreen extends StatelessWidget {
     }
   }
 
+  void _createJob() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +48,10 @@ class HomeScreen extends StatelessWidget {
             ),
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: _createJob,
       ),
     );
   }

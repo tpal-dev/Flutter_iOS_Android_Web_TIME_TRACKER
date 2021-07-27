@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:time_tracker_app/app/home_screen.dart';
+import 'package:time_tracker_app/app/home/home_screen.dart';
 import 'package:time_tracker_app/app/sign_in/sign_in_screen.dart';
 import 'package:time_tracker_app/services/auth.dart';
+import 'package:time_tracker_app/services/database.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({Key key}) : super(key: key);
@@ -19,7 +20,10 @@ class LandingScreen extends StatelessWidget {
           if (user == null) {
             return SignInScreen.create(context);
           }
-          return HomeScreen();
+          return Provider<Database>(
+            create: (_) => FirestoreDatabase(uid: user.uid),
+            child: HomeScreen(),
+          );
         }
         return Scaffold(
           body: Center(
