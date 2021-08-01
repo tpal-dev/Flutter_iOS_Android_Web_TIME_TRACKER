@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:time_tracker_app/app/home/add_job_page.dart';
 import 'package:time_tracker_app/app/home/models/job.dart';
 import 'package:time_tracker_app/custom_widgets/show_alert_dialog.dart';
 import 'package:time_tracker_app/custom_widgets/show_exception_alert_dialog.dart';
@@ -62,7 +63,7 @@ class JobsScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _createJob(context),
+        onPressed: () => AddJobPage.show(context),
       ),
       body: _buildContents(context),
     );
