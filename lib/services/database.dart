@@ -4,7 +4,7 @@ import 'package:time_tracker_app/services/api_path.dart';
 import 'package:time_tracker_app/services/firestore_service.dart';
 
 abstract class Database {
-  Future<void> createJob(Job job);
+  Future<void> setJob(Job job);
   Stream<List<Job>> jobStream();
 }
 
@@ -17,11 +17,16 @@ class FirestoreDatabase implements Database {
 
   final _service = FirestoreService.instance;
 
-  Stream<List<Job>> jobStream() =>
-      _service.collectionStream(path: APIPath.jobs(uid: uid), builder: (data) => Job.fromMap(data));
+  Stream<List<Job>> jobStream() => _service.collectionStream(
+        path: APIPath.jobs(uid: uid),
+        builder: (data, documentId) => Job.fromMap(data, documentId),
+      );
 
-  Future<void> createJob(Job job) async => _service.setData(
-        path: APIPath.job(uid: uid, jobId: documentIdFromCurrentDate()),
+  Future<void> setJob(Job job) async => _service.setData(
+        path: APIPath.job(
+          uid: uid,
+          jobId: job.id,
+        ),
         data: job.toMap(),
       );
 }
