@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:time_tracker_app/app/home/add_job_page.dart';
+import 'package:time_tracker_app/app/home/jobs/add_job_screen.dart';
+import 'package:time_tracker_app/app/home/jobs/job_list_file.dart';
 import 'package:time_tracker_app/app/home/models/job.dart';
 import 'package:time_tracker_app/custom_widgets/show_alert_dialog.dart';
 import 'package:time_tracker_app/custom_widgets/show_exception_alert_dialog.dart';
@@ -31,15 +32,6 @@ class JobsScreen extends StatelessWidget {
     }
   }
 
-  void _createJob(BuildContext context) async {
-    try {
-      final database = Provider.of<Database>(context, listen: false);
-      await database.createJob(Job(name: 'Blogging', ratePerHour: 10));
-    } on FirebaseException catch (e) {
-      showExceptionAlertDialog(context, exception: e);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +55,7 @@ class JobsScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => AddJobPage.show(context),
+        onPressed: () => AddJobScreen.show(context),
       ),
       body: _buildContents(context),
     );
@@ -76,7 +68,12 @@ class JobsScreen extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final jobs = snapshot.data;
-            final children = jobs.map((job) => Text(job.name)).toList();
+            final children = jobs
+                .map((job) => JobListTile(
+                      job: job,
+                      onTap: () {},
+                    ))
+                .toList();
             return ListView(children: children);
           }
           if (snapshot.hasError) {
