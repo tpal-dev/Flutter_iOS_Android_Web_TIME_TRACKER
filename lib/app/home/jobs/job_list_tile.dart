@@ -9,14 +9,10 @@ class JobListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListTile(
-        title: Text(job.name),
-        trailing: Icon(Icons.arrow_forward_ios_rounded),
-        tileColor: Colors.grey.shade200,
-        onTap: onTap,
-      ),
+    return ListTile(
+      title: Text(job.name),
+      trailing: Icon(Icons.arrow_forward_ios_rounded),
+      onTap: onTap,
     );
   }
 }
