@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:time_tracker_app/app/home/models/job.dart';
 import 'package:time_tracker_app/custom_widgets/show_alert_dialog.dart';
 import 'package:time_tracker_app/custom_widgets/show_exception_alert_dialog.dart';
@@ -11,8 +10,7 @@ class EditJobScreen extends StatefulWidget {
   final Database database;
   final Job job;
 
-  static Future<void> show(BuildContext context, {Job job}) async {
-    final database = Provider.of<Database>(context, listen: false);
+  static Future<void> show(BuildContext context, {@required Database database, Job job}) async {
     await Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => EditJobScreen(
@@ -68,7 +66,7 @@ class _EditJobScreenState extends State<EditJobScreen> {
   void _submit() async {
     if (_validateAndSaveForm()) {
       try {
-        final jobs = await widget.database.jobStream().first;
+        final jobs = await widget.database.jobsStream().first;
         final allNames = jobs.map((job) => job.name).toList();
         if (widget.job != null) {
           allNames.remove(widget.job.name);
