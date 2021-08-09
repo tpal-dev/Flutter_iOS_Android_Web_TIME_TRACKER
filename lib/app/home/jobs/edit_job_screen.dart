@@ -11,7 +11,7 @@ class EditJobScreen extends StatefulWidget {
   final Job job;
 
   static Future<void> show(BuildContext context, {@required Database database, Job job}) async {
-    await Navigator.of(context).push(
+    await Navigator.of(context, rootNavigator: true).push(
       MaterialPageRoute(
         builder: (context) => EditJobScreen(
           database: database,
