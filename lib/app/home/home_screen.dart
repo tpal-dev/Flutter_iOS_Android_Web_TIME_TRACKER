@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracker_app/app/home/account/account_screen.dart';
 import 'package:time_tracker_app/app/home/cupertino_home_scaffold.dart';
+import 'package:time_tracker_app/app/home/entries/entries_page.dart';
 import 'package:time_tracker_app/app/home/jobs/jobs_screen.dart';
 import 'package:time_tracker_app/app/home/tab_item.dart';
 
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Map<TabItem, WidgetBuilder> get widgetBuilders {
     return {
       TabItem.jobs: (_) => JobsScreen(),
-      TabItem.entries: (_) => Container(),
+      TabItem.entries: (_) => EntriesPage.create(context),
       TabItem.account: (_) => AccountScreen(),
     };
   }
